@@ -1,4 +1,4 @@
-import { Home } from './screens/Home'
+import { Home } from './src/screens/Home'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function App() {
