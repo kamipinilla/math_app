@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { Text, View } from 'react-native'
 import { Logic } from '../../logic/logic'
 import { Diff } from '../../logic/diff'
@@ -48,4 +48,3 @@ export function Home() {
     </View>
   )
 }
-
