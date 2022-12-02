@@ -25,10 +25,6 @@ export function Home() {
   }, [])
 
   const onCharPress = useCallback((char: string) => {
-    if (input === answer) {
-      return
-    }
-
     let candidate = input === null ? char : input + char
     const answerSubstr = answer.substring(0, candidate.length)
     if (candidate === answerSubstr) {
