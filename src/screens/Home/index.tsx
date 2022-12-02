@@ -19,12 +19,10 @@ export function Home() {
 
   const [input, setInput] = useState<string | null>(null)
 
-  useEffect(() => {
-    if (input === answer) {
-      setScenario(logic.getScenario())
-      setInput(null)
-    }
-  }, [input, answer])
+  const refreshScenario = useCallback(() => {
+    setScenario(logic.getScenario())
+    setInput(null)
+  }, [])
 
   const onCharPress = useCallback((char: string) => {
     if (input === answer) {
@@ -34,9 +32,13 @@ export function Home() {
     let candidate = input === null ? char : input + char
     const answerSubstr = answer.substring(0, candidate.length)
     if (candidate === answerSubstr) {
-      setInput(candidate)
+      if (candidate === answer) {
+        refreshScenario()
+      } else {
+        setInput(candidate)
+      }
     }
-  }, [input, answer])
+  }, [input, answer, refreshScenario])
 
   const left = scenario.getLeft()
   const right = scenario.getRight()
