@@ -18,6 +18,7 @@ module.exports = {
     'eol-last': 0,
     'no-shadow': 0,
     'quotes': 0,
+    'curly': 0,
 
     '@typescript-eslint/no-unused-vars': 1,
   },
