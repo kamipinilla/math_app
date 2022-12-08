@@ -6,6 +6,8 @@ import { Mult } from '../../logic/mult'
 import { Scenario } from '../../logic/scenario'
 import { Sum } from '../../logic/sum'
 import { NumPad } from '../../widgets/NumPad'
+import { Question } from './Question'
+import { Answer } from './Answer'
 
 const logic = new Logic([
   new Sum(),
@@ -36,15 +38,20 @@ export function Home() {
     }
   }, [input, answer, refreshScenario])
 
-  const left = scenario.getLeft()
-  const right = scenario.getRight()
-  const operand = scenario.getOperand().getString()
-
   return (
-    <View>
-      <Text>{`${left} ${operand} ${right}`}</Text>
-      <Text>{input !== null ? input : ''}</Text>
-      <NumPad onCharPress={onCharPress} />
+    <View style={{height: '100%'}}>
+      <View style={{flex: 1}}>
+        <Question
+          left={scenario.getLeft()}
+          right={scenario.getRight()}
+          operand={scenario.getOperand()} />
+      </View>
+      <View style={{flex: 1}}>
+        <Answer answer={input} />
+      </View>
+      <View style={{flex: 1}}>
+        <NumPad onCharPress={onCharPress} />
+      </View>
     </View>
   )
 }
