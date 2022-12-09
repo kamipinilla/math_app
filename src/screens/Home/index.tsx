@@ -1,12 +1,12 @@
 import { useCallback, useState } from 'react'
 import { View } from 'react-native'
 import { game } from '../../config'
-import { Scenario as ScenarioT } from '../../logic/scenario'
+import { Scenario } from '../../logic/scenario'
 import { NumPad } from '../../widgets/NumPad'
-import { Scenario } from './Scenario'
+import { ScenarioC } from './Scenario'
 
 export function Home() {
-  const [scenario, setScenario] = useState<ScenarioT>(game.getScenario())
+  const [scenario, setScenario] = useState<Scenario>(game.getScenario())
   const answer = scenario.getAnswer().toString()
 
   const [input, setInput] = useState<string | null>(null)
@@ -32,7 +32,7 @@ export function Home() {
   return (
     <View style={{height: '100%'}}>
       <View style={{flex: scenarioPerc}}>
-        <Scenario scenario={scenario} input={input} />
+        <ScenarioC scenario={scenario} input={input} />
       </View>
       <View style={{flex: 100 - scenarioPerc}}>
         <NumPad onCharPress={onCharPress} />

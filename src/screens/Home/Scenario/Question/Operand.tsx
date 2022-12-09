@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import { Text } from 'react-native'
-import { Operand as OperandT } from '../../../../logic/operand'
+import { Operand } from '../../../../logic/operand'
 
-export const Operand: FC<{
-  operand: OperandT,
+export const OperandC: FC<{
+  operand: Operand,
 }> = props => {
   const { operand } = props
 

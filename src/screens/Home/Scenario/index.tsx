@@ -4,7 +4,7 @@ import { Scenario as ScenarioT } from '../../../logic/scenario'
 import { Answer } from './Answer'
 import { Question } from './Question'
 
-export const Scenario: FC<{
+export const ScenarioC: FC<{
   scenario: ScenarioT
   input: string | null
 }> = props => {

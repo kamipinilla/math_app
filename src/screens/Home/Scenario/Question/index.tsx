@@ -1,13 +1,13 @@
 import { FC } from 'react'
 import { View } from 'react-native'
-import { Operand as OperandT } from '../../../../logic/operand'
+import { Operand } from '../../../../logic/operand'
 import { Number } from './Number'
-import { Operand } from './Operand'
+import { OperandC } from './Operand'
 
 export const Question: FC<{
   left: number
   right: number
-  operand: OperandT
+  operand: Operand
 }> = props => {
   const {left, right, operand} = props
 
@@ -17,7 +17,7 @@ export const Question: FC<{
         <Number number={left} />
       </View>
       <View style={{marginHorizontal: 20}}>
-        <Operand operand={operand} />
+        <OperandC operand={operand} />
       </View>
       <View style={{flex: 1}}>
         <Number number={right} />
