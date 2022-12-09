@@ -1,23 +1,20 @@
-import { Order } from '../order'
 import { Range } from '../range'
-import { Scenario } from '../scenario'
 import { chooseRandom } from '../random'
-import { Skill } from '.'
+import { NumberGenerator, NumberGeneratorOutput } from './numberGenerator'
+import { Skill } from './skill'
+import { SortedAscOrder } from '../order'
 import { Operand } from '../operand'
 
-export class Dist implements Skill {
+export class DistNumberGenerator implements NumberGenerator {
   private firstRange: Range
   private secondRange: Range
-  private order: Order
 
   constructor(p: {
     firstRange: Range,
     secondRange: Range,
-    order: Order,
   }) {
     this.firstRange = p.firstRange
     this.secondRange = p.secondRange
-    this.order = p.order
   }
 
   private getSecondNumber(first: number): number {
@@ -30,19 +27,30 @@ export class Dist implements Skill {
 
     return chooseRandom(options)
   }
-
-  generateScenario(): Scenario {
+  getNumbers(): NumberGeneratorOutput {
     const first = this.firstRange.getRandomInt()
     const second = this.getSecondNumber(first)
     const answer = Math.abs(first - second)
 
-    const [left, right] = this.order.getOrder(first, second)
-
-    return new Scenario({
-      left,
-      right,
+    return {
+      first,
+      second,
       answer,
-      operand: Operand.Tilde,
-    })
+    }
   }
 }
+
+export const distSkill = new Skill({
+  generator: new DistNumberGenerator({
+    firstRange: new Range({
+      min: 2,
+      max: 10,
+    }),
+    secondRange: new Range({
+      min: 2,
+      max: 10,
+    }),
+  }),
+  order: new SortedAscOrder(),
+  operand: Operand.Tilde,
+})

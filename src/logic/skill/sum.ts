@@ -1,23 +1,20 @@
-import { Operand } from '../operand'
-import { Order } from '../order'
 import { Range } from '../range'
-import { Scenario } from '../scenario'
-import { Skill } from '.'
 import { chooseRandom } from '../random'
+import { NumberGenerator, NumberGeneratorOutput } from './numberGenerator'
+import { Skill } from './skill'
+import { SortedAscOrder } from '../order'
+import { Operand } from '../operand'
 
-export class Sum implements Skill {
+export class SumNumberGenerator implements NumberGenerator {
   private firstRange: Range
   private secondRange: Range
-  private order: Order
 
   constructor(p: {
     firstRange: Range,
     secondRange: Range,
-    order: Order,
   }) {
     this.firstRange = p.firstRange
     this.secondRange = p.secondRange
-    this.order = p.order
   }
 
   private getSecondNumber(first: number): number {
@@ -31,18 +28,30 @@ export class Sum implements Skill {
     return chooseRandom(options)
   }
 
-  generateScenario(): Scenario {
+  getNumbers(): NumberGeneratorOutput {
     const first = this.firstRange.getRandomInt()
     const second = this.getSecondNumber(first)
     const answer = first + second
 
-    const [left, right] = this.order.getOrder(first, second)
-
-    return new Scenario({
-      left,
-      right,
+    return {
+      first,
+      second,
       answer,
-      operand: Operand.Plus,
-    })
+    }
   }
 }
+
+export const sumSkill = new Skill({
+  generator: new SumNumberGenerator({
+    firstRange: new Range({
+      min: 2,
+      max: 9,
+    }),
+    secondRange: new Range({
+      min: 2,
+      max: 9,
+    }),
+  }),
+  order: new SortedAscOrder(),
+  operand: Operand.Plus,
+})

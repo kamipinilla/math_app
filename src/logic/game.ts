@@ -1,5 +1,5 @@
 import { Scenario } from './scenario'
-import { Skill } from './skill'
+import { Skill } from './skill/skill'
 import { chooseUsingDay } from './random'
 
 export class Game {

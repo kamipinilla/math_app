@@ -1,36 +1,45 @@
-import { Order } from '../order'
-import { Range } from '../range'
-import { Scenario } from '../scenario'
-import { Skill } from '.'
 import { Operand } from '../operand'
+import { SortedAscOrder } from '../order'
+import { Range } from '../range'
+import { NumberGenerator, NumberGeneratorOutput } from './numberGenerator'
+import { Skill } from './skill'
 
-export class Mult implements Skill {
+export class MultNumberGenerator implements NumberGenerator {
   private firstRange: Range
   private secondRange: Range
-  private order: Order
 
   constructor(p: {
     firstRange: Range,
     secondRange: Range,
-    order: Order,
   }) {
     this.firstRange = p.firstRange
     this.secondRange = p.secondRange
-    this.order = p.order
   }
 
-  generateScenario(): Scenario {
+  getNumbers(): NumberGeneratorOutput{
     const first = this.firstRange.getRandomInt()
     const second = this.secondRange.getRandomInt()
     const answer = first * second
 
-    const [left, right] = this.order.getOrder(first, second)
-
-    return new Scenario({
-      left,
-      right,
+    return {
+      first,
+      second,
       answer,
-      operand: Operand.Times,
-    })
+    }
   }
 }
+
+export const multSkill = new Skill({
+  generator: new MultNumberGenerator({
+    firstRange: new Range({
+      min: 2,
+      max: 9,
+    }),
+    secondRange: new Range({
+      min: 2,
+      max: 9,
+    }),
+  }),
+  order: new SortedAscOrder(),
+  operand: Operand.Times,
+})
