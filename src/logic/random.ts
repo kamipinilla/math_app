@@ -12,11 +12,3 @@ export function chooseUsingDay<T>(items: T[]): T {
   const randomIndex = currDay % items.length
   return items[randomIndex]
 }
-
-export function scramble(first: number, second: number): [number, number] {
-  if (Math.random() < 0.5) {
-    [first, second] = [second, first]
-  }
-
-  return [first, second]
-}

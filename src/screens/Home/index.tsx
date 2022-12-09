@@ -1,27 +1,18 @@
 import { useCallback, useState } from 'react'
 import { View } from 'react-native'
-import { Logic } from '../../logic/logic'
-import { Diff } from '../../logic/diff'
-import { Mult } from '../../logic/mult'
+import { game } from '../../config'
 import { Scenario as ScenarioT } from '../../logic/scenario'
-import { Sum } from '../../logic/sum'
 import { NumPad } from '../../widgets/NumPad'
 import { Scenario } from './Scenario'
 
-const logic = new Logic([
-  new Mult(),
-  new Sum(),
-  new Diff(),
-])
-
 export function Home() {
-  const [scenario, setScenario] = useState<ScenarioT>(logic.getScenario())
+  const [scenario, setScenario] = useState<ScenarioT>(game.getScenario())
   const answer = scenario.getAnswer().toString()
 
   const [input, setInput] = useState<string | null>(null)
 
   const refreshScenario = useCallback(() => {
-    setScenario(logic.getScenario())
+    setScenario(game.getScenario())
     setInput(null)
   }, [])
 

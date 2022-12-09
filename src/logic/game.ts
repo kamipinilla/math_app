@@ -1,8 +1,8 @@
 import { Scenario } from './scenario'
 import { Skill } from './skill'
-import { chooseUsingDay } from './utils'
+import { chooseUsingDay } from './random'
 
-export class Logic {
+export class Game {
   constructor(
     private skills: Skill[],
   ) {}

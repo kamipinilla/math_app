@@ -1,13 +1,21 @@
-export class Operand {
-  static readonly Times = new this('x')
-  static readonly Slash = new this('/')
-  static readonly Plus = new this('+')
-  static readonly Minus = new this('-')
-  static readonly Tilde = new this('~')
+export interface Operand {
+  getString(): string
+}
 
-  private constructor(private str: string) {}
-
+export class TimesOperand implements Operand {
   getString(): string {
-    return this.str
+    return 'x'
+  }
+}
+
+export class PlusOperand implements Operand {
+  getString(): string {
+    return '+'
+  }
+}
+
+export class TildeOperand implements Operand {
+  getString(): string {
+    return '~'
   }
 }
