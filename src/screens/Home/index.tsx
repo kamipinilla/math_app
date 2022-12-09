@@ -28,7 +28,7 @@ export function Home() {
     }
   }, [input, answer, refreshScenario])
 
-  const scenarioPerc = 50
+  const scenarioPerc = 60
   return (
     <View style={{height: '100%'}}>
       <View style={{flex: scenarioPerc}}>
