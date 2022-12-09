@@ -1,8 +1,8 @@
-import { TimesOperand } from '../operand'
 import { Order } from '../order'
 import { Range } from '../range'
 import { Scenario } from '../scenario'
 import { Skill } from '.'
+import { Operand } from '../operand'
 
 export class Mult implements Skill {
   private firstRange: Range
@@ -30,7 +30,7 @@ export class Mult implements Skill {
       left,
       right,
       answer,
-      operand: new TimesOperand(),
+      operand: Operand.Times,
     })
   }
 }

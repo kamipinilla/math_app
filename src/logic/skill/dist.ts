@@ -1,9 +1,9 @@
-import { TildeOperand } from '../operand'
 import { Order } from '../order'
 import { Range } from '../range'
 import { Scenario } from '../scenario'
 import { chooseRandom } from '../random'
 import { Skill } from '.'
+import { Operand } from '../operand'
 
 export class Dist implements Skill {
   private firstRange: Range
@@ -42,7 +42,7 @@ export class Dist implements Skill {
       left,
       right,
       answer,
-      operand: new TildeOperand(),
+      operand: Operand.Tilde,
     })
   }
 }

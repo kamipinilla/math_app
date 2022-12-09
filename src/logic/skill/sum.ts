@@ -1,4 +1,4 @@
-import { PlusOperand } from '../operand'
+import { Operand } from '../operand'
 import { Order } from '../order'
 import { Range } from '../range'
 import { Scenario } from '../scenario'
@@ -42,7 +42,7 @@ export class Sum implements Skill {
       left,
       right,
       answer,
-      operand: new PlusOperand(),
+      operand: Operand.Plus,
     })
   }
 }
