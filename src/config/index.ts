@@ -1,4 +1,4 @@
-import { distSkill, Game, multSkill, sumSkill } from '../logic'
+import { Game, distSkill, multSkill, sumSkill } from '../logic'
 
 export const game = new Game([
   multSkill,
