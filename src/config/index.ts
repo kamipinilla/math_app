@@ -29,8 +29,8 @@ export const game = new Game([
       max: 10,
     }),
     secondRange: new Range({
-      min: 100,
-      max: 1000,
+      min: 2,
+      max: 10,
     }),
     order: new SortedAscOrder(),
   }),

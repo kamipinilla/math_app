@@ -7,7 +7,7 @@ export const Number: FC<{
   const { number } = props
 
   return (
-    <Text style={{fontSize: 54}}>
+    <Text style={{fontSize: 52}}>
       {number}
     </Text>
   )

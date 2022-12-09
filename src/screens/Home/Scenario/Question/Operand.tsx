@@ -8,7 +8,7 @@ export const Operand: FC<{
   const { operand } = props
 
   return (
-    <Text style={{fontSize: 48}}>
+    <Text style={{fontSize: 40}}>
       {operand.getString()}
     </Text>
   )

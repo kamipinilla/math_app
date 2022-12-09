@@ -13,11 +13,15 @@ export const Question: FC<{
 
   return (
     <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-      <Number number={left} />
+      <View style={{flex: 1, flexDirection: 'row-reverse'}}>
+        <Number number={left} />
+      </View>
       <View style={{marginHorizontal: 20}}>
         <Operand operand={operand} />
       </View>
-      <Number number={right} />
+      <View style={{flex: 1}}>
+        <Number number={right} />
+      </View>
     </View>
   )
 }
