@@ -33,4 +33,12 @@ export class Scenario {
   getAnswer(): number {
     return this.answer
   }
+
+  private getHash(): string {
+    return `${this.left}${this.operand.getString()}${this.right}`
+  }
+
+  equals(other: Scenario): boolean {
+    return this.getHash() === other.getHash()
+  }
 }

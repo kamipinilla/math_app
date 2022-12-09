@@ -6,15 +6,20 @@ import { NumPad } from '../../widgets/NumPad'
 import { ScenarioC } from './Scenario'
 
 export function Home() {
-  const [scenario, setScenario] = useState<Scenario>(game.getScenario())
+  const [scenario, setScenario] = useState<Scenario>(() => game.getScenario())
   const answer = scenario.getAnswer().toString()
 
   const [input, setInput] = useState<string | null>(null)
 
   const handleCorrectAnswer = useCallback(() => {
-    setScenario(game.getScenario())
+    let newScenario = game.getScenario()
+    while (newScenario.equals(scenario)) {
+      newScenario = game.getScenario()
+    }
+
+    setScenario(newScenario)
     setInput(null)
-  }, [])
+  }, [scenario])
 
   const handleWrongInput = useCallback(() => {
     Vibration.vibrate(80)
