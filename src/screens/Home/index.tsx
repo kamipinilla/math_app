@@ -22,7 +22,7 @@ export function Home() {
   }, [scenario])
 
   const handleWrongInput = useCallback(() => {
-    Vibration.vibrate(80)
+    Vibration.vibrate(50)
   }, [])
 
   const onCharPress = useCallback((char: string) => {
