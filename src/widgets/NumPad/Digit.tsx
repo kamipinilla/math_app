@@ -10,7 +10,7 @@ export const Digit: FC<{
     <Pressable
       onPress={() => onCharPress(digit.toString())}
       style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text style={{fontSize: 24, fontWeight: '500'}}>{digit}</Text>
+      <Text style={{fontSize: 26, fontWeight: '500'}}>{digit}</Text>
     </Pressable>
   )
 }
