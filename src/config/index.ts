@@ -1,9 +1,4 @@
-import { Game } from '../logic/game'
-import { Dist } from '../logic/skill/dist'
-import { Mult } from '../logic/skill/mult'
-import { Range } from '../logic/range'
-import { Sum } from '../logic/skill/sum'
-import { SortedAscOrder } from '../logic/order'
+import { Dist, Game, Mult, Range, SortedAscOrder, Sum } from '../logic'
 
 export const game = new Game([
   new Mult({
