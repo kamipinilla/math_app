@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { View } from 'react-native'
-import { Button } from '../Button'
+import { Digit } from './Digit'
 
 export const Row: FC<{
   digits: number[],
@@ -10,11 +10,11 @@ export const Row: FC<{
   const { digits, onCharPress } = props
   const numberComps = digits.map(digit => (
     <View key={digit} style={{flex: 1}}>
-      <Button key={digit} onPress={() => onCharPress(digit.toString())}>{digit}</Button>
+      <Digit digit={digit} onCharPress={onCharPress} />
     </View>
   ))
   return (
-    <View style={{flex: 1, flexDirection: 'row'}}>
+    <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
       {numberComps}
     </View>
   )

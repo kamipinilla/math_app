@@ -7,8 +7,8 @@ export const Answer: FC<{
   const {answer} = props
 
   return (
-    <View>
-      <Text>{answer ?? '<empty>'}</Text>
+    <View style={{justifyContent: 'center', alignItems: 'center'}}>
+      <Text style={{fontSize: 32}}>{answer ?? ''}</Text>
     </View>
   )
 }

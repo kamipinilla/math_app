@@ -1,13 +1,12 @@
 import { useCallback, useState } from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import { Logic } from '../../logic/logic'
 import { Diff } from '../../logic/diff'
 import { Mult } from '../../logic/mult'
-import { Scenario } from '../../logic/scenario'
+import { Scenario as ScenarioT } from '../../logic/scenario'
 import { Sum } from '../../logic/sum'
 import { NumPad } from '../../widgets/NumPad'
-import { Question } from './Question'
-import { Answer } from './Answer'
+import { Scenario } from './Scenario'
 
 const logic = new Logic([
   new Sum(),
@@ -16,7 +15,7 @@ const logic = new Logic([
 ])
 
 export function Home() {
-  const [scenario, setScenario] = useState<Scenario>(logic.getScenario())
+  const [scenario, setScenario] = useState<ScenarioT>(logic.getScenario())
   const answer = scenario.getAnswer().toString()
 
   const [input, setInput] = useState<string | null>(null)
@@ -38,18 +37,13 @@ export function Home() {
     }
   }, [input, answer, refreshScenario])
 
+  const scenarioPerc = 50
   return (
     <View style={{height: '100%'}}>
-      <View style={{flex: 1}}>
-        <Question
-          left={scenario.getLeft()}
-          right={scenario.getRight()}
-          operand={scenario.getOperand()} />
+      <View style={{flex: scenarioPerc}}>
+        <Scenario scenario={scenario} input={input} />
       </View>
-      <View style={{flex: 1}}>
-        <Answer answer={input} />
-      </View>
-      <View style={{flex: 1}}>
+      <View style={{flex: 100 - scenarioPerc}}>
         <NumPad onCharPress={onCharPress} />
       </View>
     </View>
