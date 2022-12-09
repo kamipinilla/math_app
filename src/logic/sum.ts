@@ -2,7 +2,7 @@ import { Operand } from './operand'
 import { Range } from './range'
 import { Scenario } from './scenario'
 import { Skill } from './skill'
-import { choose, scramble } from './utils'
+import { chooseRandom, scramble } from './utils'
 
 const firstRange = new Range({
   min: 2,
@@ -20,7 +20,7 @@ export class Sum implements Skill {
       options.push(second)
     }
 
-    return choose(options)
+    return chooseRandom(options)
   }
 
   generateScenario(): Scenario {

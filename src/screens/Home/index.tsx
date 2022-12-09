@@ -9,9 +9,9 @@ import { NumPad } from '../../widgets/NumPad'
 import { Scenario } from './Scenario'
 
 const logic = new Logic([
+  new Mult(),
   new Sum(),
   new Diff(),
-  new Mult(),
 ])
 
 export function Home() {

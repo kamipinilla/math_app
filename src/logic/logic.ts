@@ -1,6 +1,6 @@
 import { Scenario } from './scenario'
 import { Skill } from './skill'
-import { choose } from './utils'
+import { chooseUsingDay } from './utils'
 
 export class Logic {
   constructor(
@@ -8,7 +8,7 @@ export class Logic {
   ) {}
 
   getScenario(): Scenario {
-    const skill = choose(this.skills)
+    const skill = chooseUsingDay(this.skills)
     const scenario = skill.generateScenario()
     return scenario
   }
