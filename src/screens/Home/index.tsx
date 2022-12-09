@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import { View } from 'react-native'
+import { View, Vibration } from 'react-native'
 import { game } from '../../config'
 import { Scenario } from '../../logic/scenario'
 import { NumPad } from '../../widgets/NumPad'
@@ -11,9 +11,13 @@ export function Home() {
 
   const [input, setInput] = useState<string | null>(null)
 
-  const refreshScenario = useCallback(() => {
+  const handleCorrectAnswer = useCallback(() => {
     setScenario(game.getScenario())
     setInput(null)
+  }, [])
+
+  const handleWrongInput = useCallback(() => {
+    Vibration.vibrate(80)
   }, [])
 
   const onCharPress = useCallback((char: string) => {
@@ -21,12 +25,14 @@ export function Home() {
     const answerSubstr = answer.substring(0, candidate.length)
     if (candidate === answerSubstr) {
       if (candidate === answer) {
-        refreshScenario()
+        handleCorrectAnswer()
       } else {
         setInput(candidate)
       }
+    } else {
+      handleWrongInput()
     }
-  }, [input, answer, refreshScenario])
+  }, [input, answer, handleCorrectAnswer, handleWrongInput])
 
   const scenarioPerc = 60
   return (
