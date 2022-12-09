@@ -27,6 +27,7 @@ export class DistNumberGenerator implements NumberGenerator {
 
     return chooseRandom(options)
   }
+
   getNumbers(): NumberGeneratorOutput {
     const first = this.firstRange.getRandomInt()
     const second = this.getSecondNumber(first)
