@@ -10,6 +10,7 @@ export function Home() {
   const answer = scenario.getAnswer().toString()
 
   const [input, setInput] = useState<string | null>(null)
+  const [failVisible, setFailVisible] = useState<boolean>(false)
 
   const handleCorrectAnswer = useCallback(() => {
     let newScenario = game.getScenario()
@@ -23,7 +24,13 @@ export function Home() {
 
   const handleWrongInput = useCallback(() => {
     Vibration.vibrate(50)
-  }, [])
+    if (failVisible) return
+
+    setFailVisible(true)
+    setTimeout(() => {
+      setFailVisible(false)
+    }, 300)
+  }, [failVisible])
 
   const onCharPress = useCallback((char: string) => {
     let candidate = input === null ? char : input + char
@@ -43,7 +50,7 @@ export function Home() {
   return (
     <View style={{height: '100%'}}>
       <View style={{flex: scenarioPerc}}>
-        <ScenarioC scenario={scenario} input={input} />
+        <ScenarioC scenario={scenario} input={input} failVisible={failVisible} />
       </View>
       <View style={{flex: 100 - scenarioPerc}}>
         <NumPad onCharPress={onCharPress} />
