@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import { View, Vibration } from 'react-native'
+import { View } from 'react-native'
 import { game } from '../../config'
 import { Scenario } from '../../logic/scenario'
 import { NumPad } from '../../widgets/NumPad'
@@ -22,20 +22,23 @@ export function Home() {
     setInput(null)
   }, [scenario])
 
-  const handleWrongInput = useCallback(() => {
-    Vibration.vibrate(50)
-    if (failVisible) return
-
-    setFailVisible(true)
-    setTimeout(() => {
+  const handleCorrectInput = useCallback(() => {
+    if (failVisible) {
       setFailVisible(false)
-    }, 300)
+    }
+  }, [failVisible])
+
+  const handleWrongInput = useCallback(() => {
+    if (!failVisible) {
+      setFailVisible(true)
+    }
   }, [failVisible])
 
   const onCharPress = useCallback((char: string) => {
     let candidate = input === null ? char : input + char
     const answerSubstr = answer.substring(0, candidate.length)
     if (candidate === answerSubstr) {
+      handleCorrectInput()
       if (candidate === answer) {
         handleCorrectAnswer()
       } else {
@@ -44,7 +47,7 @@ export function Home() {
     } else {
       handleWrongInput()
     }
-  }, [input, answer, handleCorrectAnswer, handleWrongInput])
+  }, [input, answer, handleCorrectAnswer, handleWrongInput, handleCorrectInput])
 
   const scenarioPerc = 60
   return (

@@ -8,7 +8,8 @@ export function chooseRandom<T>(items: T[]): T {
 export function chooseUsingDay<T>(items: T[]): T {
   if (items.length === 0) throw Error()
 
+  const daysPerSkill = 3
   const currDay = new Date().getDate()
-  const randomIndex = currDay % items.length
+  const randomIndex = Math.floor((currDay % (daysPerSkill * items.length)) / daysPerSkill)
   return items[randomIndex]
 }
