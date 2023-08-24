@@ -1,5 +1,6 @@
 {
   "expo": {
+    "jsEngine": "hermes",
     "name": "quick",
     "slug": "quick",
     "version": "1.0.0",
