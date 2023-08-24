@@ -6,8 +6,7 @@ export const Row: FC<{
   digits: number[],
   onCharPress: (char: string) => void,
 
-}> = props => {
-  const { digits, onCharPress } = props
+}> = ({ digits, onCharPress }) => {
   const numberComps = digits.map(digit => (
     <View key={digit} style={{flex: 1}}>
       <Digit digit={digit} onCharPress={onCharPress} />
